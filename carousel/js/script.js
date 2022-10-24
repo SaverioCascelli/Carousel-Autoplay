@@ -11,7 +11,7 @@ let imgCounter = 0;
 const topButton = document.querySelector(".arrow.top");
 const bottomButton = document.querySelector(".arrow.bottom");
 const imgPreview = document.querySelector(".img-preview");
-
+let timedActive;
 
 
 for(let i = 0 ; i < imageSource.length; i++ ){
@@ -40,15 +40,25 @@ for(let i = 0 ; i < imgPreviewArr.length; i++){
         setActive();
     
     })
-}
 
-setActive();
+}
 
 timedActive = setInterval (function (){
     removeActive();
     incrementCounter();
     setActive();
 },2000);
+
+setActive();
+
+imgPreview.addEventListener("mouseout", function(){
+    timedActive = setInterval (function (){
+        removeActive();
+        incrementCounter();
+        setActive();
+    },2000);
+})
+
 
 topButton.addEventListener("click" , function(){
     removeActive();

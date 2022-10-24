@@ -19,14 +19,32 @@ for(let i = 0 ; i < imageSource.length; i++ ){
     imgPreview.innerHTML += `<div class="box-img">
                                 <img  src="../img/${imageSource[i]}" alt="">
                             </div>`;
+                  
 }
+
 
 const imgHtmlArr = document.getElementsByClassName("sc-img");
 const imgPreviewArr = document.getElementsByClassName("box-img");
 
+for(let i = 0; i < imgPreviewArr.length; i ++){
+    imgPreviewArr[i].number = i;
+    imgHtmlArr[i].number = i;
+    
+}
+for(let i = 0 ; i < imgPreviewArr.length; i++){
+    imgPreviewArr[i].addEventListener("mouseover", function(){
+
+        removeActive();
+        clearInterval(timedActive);
+        imgCounter = this.number;
+        setActive();
+    
+    })
+}
+
 setActive();
 
-setInterval (function timedActive(){
+timedActive = setInterval (function (){
     removeActive();
     incrementCounter();
     setActive();
